@@ -1,0 +1,204 @@
+2.9.7 - 2017/06/23
+
+-修复 因为回测时成交价与当前价差距大问题(复权回测)
+-修复 缓存文件大于2G时无法回测问题
+-修复 回测日线时，行情重复问题
+
+2.9.6 - 2017/04/07
+
+-修复 同策略同条件多次回测结果不一致问题
+-修复 回测中最后一笔市价单成交价错误问题
+
+
+2.9.5 - 2017/01/23
+
+-修复 回测时市价单成交价问题
+
+2.9.4 - 2017/01/13
+
+-新增 gm_md_resubscribe 重置订阅条件
+
+2.9.2 - 2016/11/12
+
+-新增 gm_md_get_stock_adj 查询复权因子
+-新增 gm_md_get_divident 查询分红送股明细
+-新增 gm_md_get_virtual_contract 查询虚拟合约映射关系
+
+2.9.0 - 2016/07/18
+
+-新增 设置超时时间API gm_set_timeout_val 
+-新增 获取超时时间API gm_get_timeout_val
+-新增 Bar.utc_endtime和Bar.strendtime字段
+-新增 Instrument.update_time 字段
+-修复 回测不同频度数据时，数据顺序错误问题
+-修复 SDK导致无法正常结束进程问题
+
+2.8.1 - 2016/04/16
+
+-新增 gm_set_timer 设置定时器
+-新增 gm_unset_timer 取消定时器
+-新增 gm_set_timer_callback 设置定时器回调方法
+-新增 Postion.available_yesterday字段
+-改进 sdk默认交易地址为终端
+-修复 Instrument中 代码名称太长显示不全问题
+-修复 用秒分时回测时数据缺少问题
+-修复 调用 gm_md_unsubscribe 时和服务器断开连接问题
+
+2.8.0 - 2016/03/16
+
+-新增 gm_td_get_orders 获取委托单
+-新增 gm_td_get_orders_by_symbol 根据代码获取委托单
+-新增 gm_md_get_calendar 获取交易日历
+-新增 gm_td_set_backtest_finish_callback(TDBacktestFinishCallback cb); 回测完成事件
+-改进 strategy_backtest_config 增加参数 bench_symbol
+-改进 Indicator, 增加字段 profit_ratio_bench,open_count,cum_inout,cum_trade,cum_pnl,cum_commission
+
+2.7.0 - 2016/01/07
+
+-新增 gm_md_get_instruments 提取交易代码
+-新增 gm_md_get_instruments_by_name
+-新增 gm_md_get_constituents 提取指数据成分股
+-新增 gm_md_get_last_n_ticks_by_time
+-新增 gm_md_get_last_n_bars_by_time
+-新增 gm_md_get_last_n_dailybars_by_time
+-新增 gm_md_get_financial_index
+-新增 gm_md_get_last_financial_index
+-新增 gm_md_get_last_n_financial_index
+-新增 gm_md_get_share_index
+-新增 gm_md_get_last_share_index
+-新增 gm_md_get_last_n_share_index
+-新增 gm_md_get_market_index
+-新增 gm_md_get_last_market_index
+-新增 gm_md_get_last_n_market_index
+-新增 gm_td_get_broker_accounts
+-新增 gm_td_get_broker_cash
+-新增 gm_td_get_broker_positions
+-新增 Instrument结构
+-新增 Constituent结构
+-新增 FinancialIndex结构
+-新增 ShareIndex结构
+-新增 MarketIndex结构
+-新增 BrokerAccount结构
+-新增 Bar中添加position字段
+-新增 Cash中添加account_id字段
+-新增 Position 中添加account_id字段
+-修复 调用gm_logout无法正常退出gm_run问题 
+
+2.6.1 - 2015/11/30
+
+-修复 回放时日频数据时，pre_close为0问题
+-修复 多个策略同时回测同一条件时，数据错乱问题
+-修复 多代码回测时SDK崩溃问题
+
+2.6.0 - 2015/11/02
+
+-新增 平昨仓api 
+      gm_td_close_long_yesterday
+      gm_td_close_short_yesterday
+      gm_td_close_long_yesterday_sync
+      gm_td_close_short_yesterday_sync
+
+-更改 枚举定义 enum PositionEffect, 添加值
+      PositionEffect_CloseToday     = 3   平今仓
+      PositionEffect_CloseYesterday = 4   平昨仓
+
+
+-更改 Bar: 去除bartime字段，增加strtime字段
+      DailyBar: 去除bartime字段，增加strtime字段
+      Tick: 增加strtime字段
+
+-修复 回测时缺少夜盘数据的问题
+
+2.5.0 - 2015/10/26
+
+-新增 回测时行情价格默认前复权处理。
+-更改 strategy_backtest_config(start_time,end_time,initial_cash,transaction_ratio,commission_ratio,slippage_ratio) 
+	   -> strategy_backtest_config(start_time,end_time,initial_cash,transaction_ratio,commission_ratio,slippage_ratio,price_type) 
+-更改 策略配置文件增加price_type配置项	   
+-修复 提取行情或回测时提示 10023 错误
+
+2.4.0 - 2015/09/24
+
+-新增 linux 版本库libgm.so
+-修复 长时段与多代码的分钟线与日线回测时缺少数据问题。
+-修复 电脑休眠后无法自动重连到服务器问题。
+
+2.3.0 - 2015/08/14
+
+-新增同步下单接口 
+	gm_td_open_long_sync()
+	gm_td_open_short_sync()
+	gm_td_close_long_sync()
+	gm_td_close_short_sync()
+	gm_td_place_order_sync()
+-新增同步撤单接口 	
+	gm_td_cancel_order_sync()
+-更改 Position 结构中添加今仓量字段 volume_today	
+
+
+2.2.0 - 2015/07/16
+
+- 新增策略回测功能，增加strategy_backtest_config 函数
+- 更改 strategy_init 去除参数 start_time和 end_time, 这两个参数可以在 strategy_backtest_config 中设置
+- 更改 Order 结构添加字段 stop_price
+- 更改 调整enum OrderType 值
+- 更改 Bar 和 DailyBar 添加字段 pre_close,flag,adj_factor
+- 更改 更新策略配置文件(ini)结构
+- 更改 调整部分错误码的值
+
+
+2.1.1 - 2015/06/19
+
+- 改进: 使用掘金API不用再安装vcredist
+- 修复: Subscribe 在 login成功后还会失败问题
+- 修复: 回放时不填写时间，调用gm_run崩溃问题
+- 修复: 连接交易服务失败，错误提示数据服务连接失败问题
+
+
+2.1.0 - 2015/05/29
+- 新增: 增加提取策略绩效指标API: gm_td_get_indicator
+
+- 更改: gm_login:
+	*删除行情服务器地址 md_addr 参数
+	*增加掘金认证服务地址 gm_addr, 可选，一般情况置为NULL
+	
+	2.0.0版本定义 
+	int gm_login(const char *md_addr, const char *username, const char *password)
+	
+	2.1.0版本定义 
+	int gm_login(const char *username, const char *password, const char *gm_addr = NULL)
+
+- 更改: strategy_init: 
+
+	*删除md_addr参数
+	*td_addr 参数移到末尾，可选参数，为NULL时使用掘金云交易服务。
+
+	2.0.0版本定义 
+	int strategy_init(
+	const char   *md_addr, 
+	const char   *td_addr,
+	const char   *username,
+	const char   *password,
+	const char   *strategy_id,
+        const char   *subscribe_symbol_list,
+        int           mode=MD_MODE_LIVE, 
+        const char   *start_time=NULL, 
+        const char   *end_time=NULL)
+  
+  2.1.0版本定义
+  GM_API int strategy_init(
+	const char   *username,
+	const char   *password,
+	const char   *strategy_id,
+	const char   *subscribe_symbol_list,
+	int           mode = MD_MODE_LIVE,
+	const char   *start_time = NULL,
+	const char   *end_time = NULL,
+	const char   *td_addr = NULL
+	);
+	
+
+
+- 修复: 修复无法回放上期所(SHFE)和大商所(DCE)行情的问题。
+
+

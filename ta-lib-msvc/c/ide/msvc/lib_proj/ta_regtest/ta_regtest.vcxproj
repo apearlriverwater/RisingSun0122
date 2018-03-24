@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="CMD Multithread Debug|Win32">
+      <Configuration>CMD Multithread Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="CMR Multithread Release|Win32">
+      <Configuration>CMR Multithread Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="CSD Single Thread Debug|Win32">
+      <Configuration>CSD Single Thread Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="CSR Single Thread Release|Win32">
+      <Configuration>CSR Single Thread Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profiling|Win32">
+      <Configuration>Profiling</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|Win32">
+      <Configuration>Template</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <ProjectGuid>{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CMR Multithread Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CSR Single Thread Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CSD Single Thread Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CMD Multithread Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profiling|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='CMR Multithread Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='CSR Single Thread Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='CSD Single Thread Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='CMD Multithread Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profiling|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profiling|Win32'">
+    <OutDir>.\ta_regtest___Win32_Profiling\</OutDir>
+    <IntDir>.\ta_regtest___Win32_Profiling\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CMD Multithread Debug|Win32'">
+    <OutDir>.\..\..\..\..\bin\</OutDir>
+    <IntDir>.\..\..\..\..\temp\cmd\ta_regtest\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CSD Single Thread Debug|Win32'">
+    <OutDir>.\..\..\..\..\bin\</OutDir>
+    <IntDir>.\..\..\..\..\temp\csd\ta_regtest\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CSR Single Thread Release|Win32'">
+    <OutDir>.\..\..\..\..\bin\</OutDir>
+    <IntDir>.\..\..\..\..\temp\csr\ta_regtest\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CMR Multithread Release|Win32'">
+    <OutDir>.\..\..\..\..\bin\</OutDir>
+    <IntDir>.\..\..\..\..\temp\cmr\ta_regtest\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profiling|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>..\..\..\..\src\ta_common;..\..\..\..\include;..\..\..\..\src\ta_common\trio;..\..\..\..\src\tools\ta_regtest;..\..\..\..\src\ta_common\imatix\sfl;..\..\..\..\src\ta_func;..\..\..\..\src\ta_data\ta_source\ta_readop;..\..\..\..\src\ta_common\mt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;TA_SINGLE_THREAD;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\ta_regtest___Win32_Profiling\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\ta_regtest___Win32_Profiling\ta_regtest.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\ta_regtest___Win32_Profiling\</ObjectFileName>
+      <ProgramDataBaseFileName>.\ta_regtest___Win32_Profiling\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\ta_regtest___Win32_Profiling\ta_regtest.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\ta_regtest___Win32_Profiling\ta_regtest.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>.\ta_regtest___Win32_Profiling\ta_regtest.exe</OutputFile>
+      <AdditionalLibraryDirectories>..\..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ta_libc_csr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='CMD Multithread Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <MinimalRebuild>true</MinimalRebuild>
+      <AdditionalIncludeDirectories>..\..\..\..\src\ta_common;..\..\..\..\include;..\..\..\..\src\ta_common\trio;..\..\..\..\src\tools\ta_regtest;..\..\..\..\src\ta_common\imatix\sfl;..\..\..\..\src\ta_func;..\..\..\..\src\ta_data\ta_source\ta_readop;..\..\..\..\src\ta_common\mt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;TA_DEBUG;WIN32;_DEBUG;TA_FUNC_NO_RANGE_CHECK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\..\..\..\..\temp\cmd\ta_regtest\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\..\..\..\..\temp\cmd\ta_regtest\ta_regtest.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\..\..\..\..\temp\cmd\ta_regtest\</ObjectFileName>
+      <ProgramDataBaseFileName>.\..\..\..\..\temp\cmd\ta_regtest\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\..\..\..\..\bin\ta_regtest.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\..\..\..\..\bin\ta_regtest.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>.\..\..\..\..\bin\ta_regtest.exe</OutputFile>
+      <AdditionalLibraryDirectories>..\..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ta_libc_cmd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='CSD Single Thread Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <MinimalRebuild>true</MinimalRebuild>
+      <AdditionalIncludeDirectories>..\..\..\..\src\ta_common;..\..\..\..\include;..\..\..\..\src\ta_common\trio;..\..\..\..\src\tools\ta_regtest;..\..\..\..\src\ta_common\imatix\sfl;..\..\..\..\src\ta_func;..\..\..\..\src\ta_data\ta_source\ta_readop;..\..\..\..\src\ta_common\mt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;TA_DEBUG;WIN32;_DEBUG;TA_SINGLE_THREAD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\..\..\..\..\temp\csd\ta_regtest\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\..\..\..\..\temp\csd\ta_regtest\ta_regtest.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\..\..\..\..\temp\csd\ta_regtest\</ObjectFileName>
+      <ProgramDataBaseFileName>.\..\..\..\..\temp\csd\ta_regtest\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\..\..\..\..\bin\ta_regtest.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\..\..\..\..\bin\ta_regtest.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>.\..\..\..\..\bin\ta_regtest.exe</OutputFile>
+      <AdditionalLibraryDirectories>..\..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ta_libc_csd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='CSR Single Thread Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>..\..\..\..\src\ta_common;..\..\..\..\include;..\..\..\..\src\ta_common\trio;..\..\..\..\src\tools\ta_regtest;..\..\..\..\src\ta_common\imatix\sfl;..\..\..\..\src\ta_func;..\..\..\..\src\ta_data\ta_source\ta_readop;..\..\..\..\src\ta_common\mt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;TA_SINGLE_THREAD;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\..\..\..\..\temp\csr\ta_regtest\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\..\..\..\..\temp\csr\ta_regtest\ta_regtest.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\..\..\..\..\temp\csr\ta_regtest\</ObjectFileName>
+      <ProgramDataBaseFileName>.\..\..\..\..\temp\csr\ta_regtest\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\..\..\..\..\bin\ta_regtest.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\..\..\..\..\bin\ta_regtest.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>.\..\..\..\..\bin\ta_regtest.exe</OutputFile>
+      <AdditionalLibraryDirectories>..\..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ta_libc_csr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='CMR Multithread Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>..\..\..\..\src\ta_common;..\..\..\..\include;..\..\..\..\src\ta_common\trio;..\..\..\..\src\tools\ta_regtest;..\..\..\..\src\ta_common\imatix\sfl;..\..\..\..\src\ta_func;..\..\..\..\src\ta_data\ta_source\ta_readop;..\..\..\..\src\ta_common\mt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\..\..\..\..\temp\cmr\ta_regtest\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\..\..\..\..\temp\cmr\ta_regtest\ta_regtest.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\..\..\..\..\temp\cmr\ta_regtest\</ObjectFileName>
+      <ProgramDataBaseFileName>.\..\..\..\..\temp\cmr\ta_regtest\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\..\..\..\..\bin\ta_regtest.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\..\..\..\..\bin\ta_regtest.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>.\..\..\..\..\bin\ta_regtest.exe</OutputFile>
+      <AdditionalLibraryDirectories>..\..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ta_libc_cmr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_regtest.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_1in_1out.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_1in_2out.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_adx.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_bbands.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_candlestick.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_ma.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_macd.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_minmax.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_mom.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_per_ema.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_per_hl.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_per_hlc.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_per_hlcv.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_per_ohlc.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_po.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_rsi.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_sar.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_stddev.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_stoch.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\ta_test_func\test_trange.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\test_abstract.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\test_data.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\test_internals.c" />
+    <ClCompile Include="..\..\..\..\src\tools\ta_regtest\test_util.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\src\tools\ta_regtest\ta_error_number.h" />
+    <ClInclude Include="..\..\..\..\src\tools\ta_regtest\ta_test_func.h" />
+    <ClInclude Include="..\..\..\..\src\tools\ta_regtest\ta_test_priv.h" />
+    <ClInclude Include="..\..\..\..\src\tools\ta_regtest\test_period.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ta_abstract\ta_abstract.vcxproj">
+      <Project>{36d8b825-7a55-4304-9f04-a50a10421dae}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\ta_common\ta_common.vcxproj">
+      <Project>{2b0b96a8-a6a3-47da-b8e7-c4faca51495c}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\ta_func\ta_func.vcxproj">
+      <Project>{3031440d-ff2d-4f57-b81f-01e017763880}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\ta_libc\ta_libc.vcxproj">
+      <Project>{08ce1683-427f-470b-a113-7516ac421e30}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

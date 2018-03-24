@@ -1,0 +1,130 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gen_code", "gen_code\gen_code.vcxproj", "{38C29522-DD0A-4F8F-A468-9A64A199DC61}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ta_abstract", "ta_abstract\ta_abstract.vcxproj", "{36D8B825-7A55-4304-9F04-A50A10421DAE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ta_common", "ta_common\ta_common.vcxproj", "{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ta_func", "ta_func\ta_func.vcxproj", "{3031440D-FF2D-4F57-B81F-01E017763880}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ta_libc", "ta_libc\ta_libc.vcxproj", "{08CE1683-427F-470B-A113-7516AC421E30}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ta_regtest", "ta_regtest\ta_regtest.vcxproj", "{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CDD Multithread DLL Debug|x86 = CDD Multithread DLL Debug|x86
+		CDR Multithread DLL Release|x86 = CDR Multithread DLL Release|x86
+		CMD Multithread Debug|x86 = CMD Multithread Debug|x86
+		CMR Multithread Release|x86 = CMR Multithread Release|x86
+		CSD Single Thread Debug|x86 = CSD Single Thread Debug|x86
+		CSR Single Thread Release|x86 = CSR Single Thread Release|x86
+		Profiling|x86 = Profiling|x86
+		Template|x86 = Template|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.CDD Multithread DLL Debug|x86.ActiveCfg = CMR Multithread Release|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.CDD Multithread DLL Debug|x86.Build.0 = CMR Multithread Release|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.CDR Multithread DLL Release|x86.ActiveCfg = CMR Multithread Release|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.CDR Multithread DLL Release|x86.Build.0 = CMR Multithread Release|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.CMD Multithread Debug|x86.ActiveCfg = CMD Multithread Debug|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.CMD Multithread Debug|x86.Build.0 = CMD Multithread Debug|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.CMR Multithread Release|x86.ActiveCfg = CMR Multithread Release|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.CMR Multithread Release|x86.Build.0 = CMR Multithread Release|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.CSD Single Thread Debug|x86.ActiveCfg = CSD Single Thread Debug|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.CSD Single Thread Debug|x86.Build.0 = CSD Single Thread Debug|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.CSR Single Thread Release|x86.ActiveCfg = CSR Single Thread Release|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.CSR Single Thread Release|x86.Build.0 = CSR Single Thread Release|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.Profiling|x86.ActiveCfg = CMR Multithread Release|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.Profiling|x86.Build.0 = CMR Multithread Release|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.Template|x86.ActiveCfg = CMR Multithread Release|Win32
+		{38C29522-DD0A-4F8F-A468-9A64A199DC61}.Template|x86.Build.0 = CMR Multithread Release|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.CDD Multithread DLL Debug|x86.ActiveCfg = CDD Multithread DLL Debug|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.CDD Multithread DLL Debug|x86.Build.0 = CDD Multithread DLL Debug|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.CDR Multithread DLL Release|x86.ActiveCfg = CDR Multithread DLL Release|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.CDR Multithread DLL Release|x86.Build.0 = CDR Multithread DLL Release|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.CMD Multithread Debug|x86.ActiveCfg = CMD Multithread Debug|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.CMD Multithread Debug|x86.Build.0 = CMD Multithread Debug|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.CMR Multithread Release|x86.ActiveCfg = CMR Multithread Release|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.CMR Multithread Release|x86.Build.0 = CMR Multithread Release|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.CSD Single Thread Debug|x86.ActiveCfg = CSD Single Thread Debug|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.CSD Single Thread Debug|x86.Build.0 = CSD Single Thread Debug|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.CSR Single Thread Release|x86.ActiveCfg = CSR Single Thread Release|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.CSR Single Thread Release|x86.Build.0 = CSR Single Thread Release|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.Profiling|x86.ActiveCfg = Profiling|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.Profiling|x86.Build.0 = Profiling|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.Template|x86.ActiveCfg = Template|Win32
+		{36D8B825-7A55-4304-9F04-A50A10421DAE}.Template|x86.Build.0 = Template|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.CDD Multithread DLL Debug|x86.ActiveCfg = CDD Multithread DLL Debug|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.CDD Multithread DLL Debug|x86.Build.0 = CDD Multithread DLL Debug|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.CDR Multithread DLL Release|x86.ActiveCfg = CDR Multithread DLL Release|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.CDR Multithread DLL Release|x86.Build.0 = CDR Multithread DLL Release|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.CMD Multithread Debug|x86.ActiveCfg = CMD Multithread Debug|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.CMD Multithread Debug|x86.Build.0 = CMD Multithread Debug|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.CMR Multithread Release|x86.ActiveCfg = CMR Multithread Release|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.CMR Multithread Release|x86.Build.0 = CMR Multithread Release|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.CSD Single Thread Debug|x86.ActiveCfg = CSD Single Thread Debug|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.CSD Single Thread Debug|x86.Build.0 = CSD Single Thread Debug|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.CSR Single Thread Release|x86.ActiveCfg = CSR Single Thread Release|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.CSR Single Thread Release|x86.Build.0 = CSR Single Thread Release|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.Profiling|x86.ActiveCfg = Profiling|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.Profiling|x86.Build.0 = Profiling|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.Template|x86.ActiveCfg = Template|Win32
+		{2B0B96A8-A6A3-47DA-B8E7-C4FACA51495C}.Template|x86.Build.0 = Template|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.CDD Multithread DLL Debug|x86.ActiveCfg = CDD Multithread DLL Debug|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.CDD Multithread DLL Debug|x86.Build.0 = CDD Multithread DLL Debug|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.CDR Multithread DLL Release|x86.ActiveCfg = CDR Multithread DLL Release|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.CDR Multithread DLL Release|x86.Build.0 = CDR Multithread DLL Release|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.CMD Multithread Debug|x86.ActiveCfg = CMD Multithread Debug|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.CMD Multithread Debug|x86.Build.0 = CMD Multithread Debug|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.CMR Multithread Release|x86.ActiveCfg = CMR Multithread Release|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.CMR Multithread Release|x86.Build.0 = CMR Multithread Release|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.CSD Single Thread Debug|x86.ActiveCfg = CSD Single Thread Debug|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.CSD Single Thread Debug|x86.Build.0 = CSD Single Thread Debug|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.CSR Single Thread Release|x86.ActiveCfg = CSR Single Thread Release|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.CSR Single Thread Release|x86.Build.0 = CSR Single Thread Release|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.Profiling|x86.ActiveCfg = Profiling|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.Profiling|x86.Build.0 = Profiling|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.Template|x86.ActiveCfg = Template|Win32
+		{3031440D-FF2D-4F57-B81F-01E017763880}.Template|x86.Build.0 = Template|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.CDD Multithread DLL Debug|x86.ActiveCfg = CDD Multithread DLL Debug|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.CDD Multithread DLL Debug|x86.Build.0 = CDD Multithread DLL Debug|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.CDR Multithread DLL Release|x86.ActiveCfg = CDR Multithread DLL Release|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.CDR Multithread DLL Release|x86.Build.0 = CDR Multithread DLL Release|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.CMD Multithread Debug|x86.ActiveCfg = CMD Multithread Debug|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.CMD Multithread Debug|x86.Build.0 = CMD Multithread Debug|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.CMR Multithread Release|x86.ActiveCfg = CMR Multithread Release|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.CMR Multithread Release|x86.Build.0 = CMR Multithread Release|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.CSD Single Thread Debug|x86.ActiveCfg = CSD Single Thread Debug|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.CSD Single Thread Debug|x86.Build.0 = CSD Single Thread Debug|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.CSR Single Thread Release|x86.ActiveCfg = CSR Single Thread Release|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.CSR Single Thread Release|x86.Build.0 = CSR Single Thread Release|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.Profiling|x86.ActiveCfg = Profiling|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.Profiling|x86.Build.0 = Profiling|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.Template|x86.ActiveCfg = Template|Win32
+		{08CE1683-427F-470B-A113-7516AC421E30}.Template|x86.Build.0 = Template|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.CDD Multithread DLL Debug|x86.ActiveCfg = CMR Multithread Release|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.CDD Multithread DLL Debug|x86.Build.0 = CMR Multithread Release|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.CDR Multithread DLL Release|x86.ActiveCfg = CMR Multithread Release|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.CDR Multithread DLL Release|x86.Build.0 = CMR Multithread Release|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.CMD Multithread Debug|x86.ActiveCfg = CMD Multithread Debug|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.CMD Multithread Debug|x86.Build.0 = CMD Multithread Debug|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.CMR Multithread Release|x86.ActiveCfg = CMR Multithread Release|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.CMR Multithread Release|x86.Build.0 = CMR Multithread Release|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.CSD Single Thread Debug|x86.ActiveCfg = CSD Single Thread Debug|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.CSD Single Thread Debug|x86.Build.0 = CSD Single Thread Debug|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.CSR Single Thread Release|x86.ActiveCfg = CSR Single Thread Release|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.CSR Single Thread Release|x86.Build.0 = CSR Single Thread Release|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.Profiling|x86.ActiveCfg = Profiling|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.Profiling|x86.Build.0 = Profiling|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.Template|x86.ActiveCfg = Template|Win32
+		{AF1DCAC7-50B4-4A2A-85BD-24D6AEA5D9B0}.Template|x86.Build.0 = Template|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,82 @@
+#include <windows.h> 
+#include <stdio.h> 
+#include <tlhelp32.h> 
+#include <iostream>   
+using namespace std;   //获取系统当前的所有进程 
+BOOL GetProcessList();   //获取指定进程所引用的模块信息 
+BOOL ListProcessModules(DWORD dwPID);  
+
+//Module Walking 使用
+int main() 
+{ 
+	GetProcessList();   
+	cout<<endl<<endl;  
+	system("pause"); 
+}   
+
+//获取到进程列表 
+BOOL GetProcessList() 
+{ 
+	HANDLE hProcessSnap; 
+	HANDLE hProcess; 
+	PROCESSENTRY32 pe32;   
+	//对系统中当前所有的进程拍下快照 
+	hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0); 
+	if(hProcessSnap == INVALID_HANDLE_VALUE) 
+	{ 
+		return FALSE; 
+	}   
+	//在使用 PROCESSENTRY32 结构之间需要先设置好该结构的大小 
+	pe32.dwSize = sizeof(PROCESSENTRY32);   
+	//获取第一个进程 
+	if(!Process32First(hProcessSnap, &pe32)) 
+	{ 
+		CloseHandle(hProcessSnap); 
+		return FALSE; 
+	}   
+	//采用 Do - While 遍历所有进程 
+	do { 
+		printf("\n-----------------------------------------------------"); 
+		printf("\n PROCESS NAME: = %s", pe32.szExeFile); 
+		printf("\n parent process ID = 0x%08X", pe32.th32ParentProcessID); 
+		printf("\n process ID = 0x%08X", pe32.th32ProcessID); 
+		printf("\n thread count = %d", pe32.cntThreads); 
+		printf("\n Priority Base = %d", pe32.pcPriClassBase);   
+		//列出与该进程相关联的模块信息 
+		ListProcessModules(pe32.th32ProcessID);   
+		//遍历获取下一个进程 
+	} 
+		while(Process32Next(hProcessSnap, &pe32));   
+
+	CloseHandle(hProcessSnap); 
+	return TRUE; 
+}      
+//获取指定进程引用的所有的模块信息 
+BOOL ListProcessModules(DWORD dwPID) 
+{ 
+	HANDLE hModuleSnap = INVALID_HANDLE_VALUE; 
+	MODULEENTRY32 me32;   
+	//给进程所引用的模块信息设定一个快照 
+	hModuleSnap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, dwPID); 
+	if(hModuleSnap == INVALID_HANDLE_VALUE) 
+	{ return FALSE; }   
+	me32.dwSize = sizeof(MODULEENTRY32);  
+	if(!Module32First(hModuleSnap, &me32)) 
+	{ 
+		CloseHandle(hModuleSnap); 
+		return FALSE; 
+	}   
+
+	do { 
+		printf("\n\n MODULE NAME: %s", me32.szModule);
+		printf("\n executable = %s", me32.szExePath); 
+		printf("\n process ID = 0x%08X", me32.th32ProcessID); 
+		printf("\n ref count (g) = 0x%04X", me32.GlblcntUsage); 
+		printf("\n ref count (p) = 0x%04X", me32.ProccntUsage); 
+		printf("\n base address = 0x%08X", (DWORD)me32.modBaseAddr); 
+		printf("\n base size = %d", me32.modBaseSize);   
+	} while(Module32Next(hModuleSnap, &me32));
+
+	CloseHandle(hModuleSnap); 
+	return TRUE; 
+}

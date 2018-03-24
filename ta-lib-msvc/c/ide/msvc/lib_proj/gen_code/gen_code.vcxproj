@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="CMD Multithread Debug|Win32">
+      <Configuration>CMD Multithread Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="CMR Multithread Release|Win32">
+      <Configuration>CMR Multithread Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="CSD Single Thread Debug|Win32">
+      <Configuration>CSD Single Thread Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="CSR Single Thread Release|Win32">
+      <Configuration>CSR Single Thread Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <ProjectGuid>{38C29522-DD0A-4F8F-A468-9A64A199DC61}</ProjectGuid>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CSD Single Thread Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CMR Multithread Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CMD Multithread Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CSR Single Thread Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='CSD Single Thread Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='CMR Multithread Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='CMD Multithread Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='CSR Single Thread Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CSR Single Thread Release|Win32'">
+    <OutDir>.\..\..\..\..\bin\</OutDir>
+    <IntDir>.\..\..\..\..\temp\csr\gen_code\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CMD Multithread Debug|Win32'">
+    <OutDir>.\..\..\..\..\bin\</OutDir>
+    <IntDir>.\..\..\..\..\temp\cmd\gen_code\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CMR Multithread Release|Win32'">
+    <OutDir>.\..\..\..\..\bin\</OutDir>
+    <IntDir>.\..\..\..\..\temp\cmr\gen_code\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CSD Single Thread Debug|Win32'">
+    <OutDir>.\..\..\..\..\bin\</OutDir>
+    <IntDir>.\..\..\..\..\temp\csd\gen_code\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='CSR Single Thread Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\src\ta_common;..\..\..\..\src\ta_abstract;..\..\..\..\src\ta_abstract\tables;..\..\..\..\src\ta_abstract\frames;..\..\..\..\src\ta_common\imatix\sfl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;TA_GEN_CODE;TA_SINGLE_THREAD;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\..\..\..\..\temp\csr\gen_code\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\..\..\..\..\temp\csr\gen_code\gen_code.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\..\..\..\..\temp\csr\gen_code\</ObjectFileName>
+      <ProgramDataBaseFileName>.\..\..\..\..\temp\csr\gen_code\</ProgramDataBaseFileName>
+      <CompileAsManaged>false</CompileAsManaged>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\..\..\..\..\bin\gen_code.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\..\..\..\..\bin\gen_code.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>.\..\..\..\..\bin\gen_code.exe</OutputFile>
+      <AdditionalLibraryDirectories>..\..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ta_common_csr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='CMD Multithread Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <MinimalRebuild>true</MinimalRebuild>
+      <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\src\ta_common;..\..\..\..\src\ta_abstract;..\..\..\..\src\ta_abstract\tables;..\..\..\..\src\ta_abstract\frames;..\..\..\..\src\ta_common\imatix\sfl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;TA_GEN_CODE;TA_DEBUG;WIN32;_DEBUG;TA_FUNC_NO_RANGE_CHECK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\..\..\..\..\temp\cmd\gen_code\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\..\..\..\..\temp\cmd\gen_code\gen_code.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\..\..\..\..\temp\cmd\gen_code\</ObjectFileName>
+      <ProgramDataBaseFileName>.\..\..\..\..\temp\cmd\gen_code\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\..\..\..\..\bin\gen_code.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\..\..\..\..\bin\gen_code.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <OutputFile>.\..\..\..\..\bin\gen_code.exe</OutputFile>
+      <AdditionalLibraryDirectories>..\..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ta_common_cmd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='CMR Multithread Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\src\ta_common;..\..\..\..\src\ta_abstract;..\..\..\..\src\ta_abstract\tables;..\..\..\..\src\ta_abstract\frames;..\..\..\..\src\ta_common\imatix\sfl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;TA_GEN_CODE;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\..\..\..\..\temp\cmr\gen_code\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\..\..\..\..\temp\cmr\gen_code\gen_code.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\..\..\..\..\temp\cmr\gen_code\</ObjectFileName>
+      <ProgramDataBaseFileName>.\..\..\..\..\temp\cmr\gen_code\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\..\..\..\..\bin\gen_code.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\..\..\..\..\bin\gen_code.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>.\..\..\..\..\bin\gen_code.exe</OutputFile>
+      <AdditionalLibraryDirectories>..\..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='CSD Single Thread Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <MinimalRebuild>true</MinimalRebuild>
+      <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\src\ta_common;..\..\..\..\src\ta_abstract;..\..\..\..\src\ta_abstract\tables;..\..\..\..\src\ta_abstract\frames;..\..\..\..\src\ta_common\imatix\sfl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;TA_DEBUG;TA_GEN_CODE;TA_SINGLE_THREAD;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\..\..\..\..\temp\csd\gen_code\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\..\..\..\..\temp\csd\gen_code\gen_code.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\..\..\..\..\temp\csd\gen_code\</ObjectFileName>
+      <ProgramDataBaseFileName>.\..\..\..\..\temp\csd\gen_code\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\..\..\..\..\bin\gen_code.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\..\..\..\..\bin\gen_code.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <OutputFile>.\..\..\..\..\bin\gen_code.exe</OutputFile>
+      <AdditionalLibraryDirectories>..\..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ta_common_csd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_a.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_b.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_c.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_d.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_e.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_f.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_g.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_h.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_i.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_j.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_k.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_l.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_m.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_n.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_o.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_p.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_q.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_r.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_s.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_t.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_u.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_v.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_w.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_x.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_y.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\tables\table_z.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\ta_abstract.c" />
+    <ClCompile Include="..\..\..\..\src\ta_abstract\ta_def_ui.c" />
+    <ClCompile Include="..\..\..\..\src\tools\gen_code\gen_code.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\src\ta_abstract\ta_def_ui.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\..\include\func_list.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ta_common\ta_common.vcxproj">
+      <Project>{2b0b96a8-a6a3-47da-b8e7-c4faca51495c}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
