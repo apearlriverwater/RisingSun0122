@@ -80,32 +80,40 @@ typedef struct tagL2TICKS {
 //疑似成交量
 //qword 小单入，中单入，大单入，超大单入   32bytes + 48H，50H，58H，60H
 //qword 小单出，中单出，大单出，超大单出   32bytes + 68H，70H，78H，80H
-//其余32字节内容不详 + 88H
+//其余32字节内容不详 + 88H typedef struct tagCAPITALFLOWSTRUCK
 typedef struct tagCAPITALFLOWSTRUCK {
+public:
 	int32_t	m_nDate,m_nTime;       //date /时间
 	double	m_dblSmallBuy, m_dblMidBuy, m_dblBigBuy, m_dblHugeBuy;
 	double	m_dblSmallSell, m_dblMidSell, m_dblBigSell, m_dblHugeSell;
-	//以下与dfcf界面显示的资金流有关，需做特殊处理，暂时不必关注
+	//成交数量，单位：股
 	int64_t	m_lSmallBuy, m_lMidBuy, m_lBigBuy, m_lHugeBuy;
 	int64_t	m_lSmallSell, m_lMidSell, m_lBigSell, m_lHugeSell;
+	//？？？
 	int32_t	m_nUnkown[8];
-}CAPITALFLOWSTRUCK;
 
-//仅保留有用的信息
-typedef struct tagCAPITALFLOWMINISTRUCK {
-	int32_t	m_nDate, m_nTime;       //date /时间
-	double	m_dblSmallBuy, m_dblMidBuy, m_dblBigBuy, m_dblHugeBuy;
-	double	m_dblSmallSell, m_dblMidSell, m_dblBigSell, m_dblHugeSell;
-
-	double GetBigFlow()
+	double GetBigNavFlow()
 	{
 		return m_dblBigBuy + m_dblHugeBuy - m_dblBigSell - m_dblHugeSell;
 	}
-	double GetSmallFlow()
+	double GetSmallNavFlow()
 	{
 		return m_dblSmallBuy + m_dblMidBuy - m_dblSmallSell - m_dblMidSell;
 	}
-}CAPITALFLOWMINISTRUCK;
+
+	double GetTotalFlow()
+	{
+		return m_dblBigBuy + m_dblHugeBuy + m_dblSmallBuy + m_dblMidBuy;
+	}
+	
+	int64_t GetTotalVol()
+	{
+		return m_lBigBuy + m_lHugeBuy + m_lSmallBuy+ m_lMidBuy;
+	}
+	
+
+}CAPITALFLOWSTRUCK;
+
 
 //资金流与K线数据
 typedef struct tagFLOWANDKLINE {
@@ -240,7 +248,7 @@ public:
 	L2TICKS *m_pL2Ticks;		//动态分配的笔成交数据  起步6000，以3000为基础递增记录数
 
 	int m_nCapitalFlowRecords;   //captical总记录数
-	CAPITALFLOWMINISTRUCK m_pCapitalFlow[MAX_KLINE_COUNT];  //必须与m_pKLineData保持同种周期、统一时间范围
+	CAPITALFLOWSTRUCK m_pCapitalFlow[MAX_KLINE_COUNT];  //必须与m_pKLineData保持同种周期、统一时间范围
 
 	int   m_nKCount, m_nKWeek;   //K线记录总数、K线周期
 	KLINEDATA  m_pKLineData[MAX_KLINE_COUNT];//m_pCapitalFlow确定K线数据，时间范围与周期数必须一致
@@ -394,7 +402,7 @@ public:
 		char szBuf[260] = { 0 };
 
 		int nDataCount = m_nCapitalFlowRecords;
-		CAPITALFLOWMINISTRUCK *pCapitalFlow = m_pCapitalFlow;
+		CAPITALFLOWSTRUCK *pCapitalFlow = m_pCapitalFlow;
 		FLOWANDKLINE *pFlowKLine = new FLOWANDKLINE[nDataCount];
 		KLINEDATA    *pKLine = m_pKLineData;
 
@@ -475,7 +483,7 @@ public:
 				}
 				for (int i = nStartRecord; i < nDataCount; i++)
 				{
-					nCopySize = sizeof(CAPITALFLOWMINISTRUCK);
+					nCopySize = sizeof(CAPITALFLOWSTRUCK);
 					memcpy_s(&pFlowKLine[i], nCopySize, &pCapitalFlow[i], nCopySize);
 					nCopySize = sizeof(KLINEDATA) - sizeof(double);//不含utcstop
 					memcpy_s(&pFlowKLine[i].open, nCopySize, &pKLine[i].open, nCopySize);
@@ -503,7 +511,7 @@ public:
 		char szBuf[260] = { 0 };
 
 		int nDataCount = m_nCapitalFlowRecords;
-		CAPITALFLOWMINISTRUCK *pCapitalFlow = m_pCapitalFlow,usrCapBuffer;
+		CAPITALFLOWSTRUCK *pCapitalFlow = m_pCapitalFlow,usrCapBuffer;
 
 		char szFilePath[260];
 		FILE	*fp;
@@ -535,7 +543,7 @@ public:
 			{
 				//文件存在  仅保存新加的部分，从文件最后的记录开始添加数据
 				fopen_s(&fp, szFilePath, "rb+");
-				nCopySize = sizeof(CAPITALFLOWMINISTRUCK);
+				nCopySize = sizeof(CAPITALFLOWSTRUCK);
 				fseek(fp, -nCopySize, SEEK_END);
 				usrCapBuffer.m_nDate=-1;
 				fread_s(&usrCapBuffer, nCopySize, nCopySize, 1, fp);
@@ -582,7 +590,7 @@ public:
 
 				if (nStartRecord < nDataCount)
 				{
-					nCopySize = fwrite(&pCapitalFlow[nStartRecord], sizeof(CAPITALFLOWMINISTRUCK), nDataCount - nStartRecord, fp);
+					nCopySize = fwrite(&pCapitalFlow[nStartRecord], sizeof(CAPITALFLOWSTRUCK), nDataCount - nStartRecord, fp);
 					bFileChange = true;
 				}
 
@@ -946,6 +954,9 @@ public:
 				//数据相同时返回false，减少无关处理
 				return false;
 			}
+			
+
+
 		}
 
 		EnterCriticalSection(&csMainFlowLock);
@@ -953,10 +964,12 @@ public:
 		for (i = nNewIndex; i < min(nNewCount,MAX_KLINE_COUNT); i++)
 		{
 			ptr = (CAPITALFLOWSTRUCK*)((BYTE*)pcds->lpData + i * sizeof(CAPITALFLOWSTRUCK));
-			memcpy_s(&m_pCapitalFlow[i], sizeof(CAPITALFLOWMINISTRUCK),
-				ptr, sizeof(CAPITALFLOWMINISTRUCK));
+			memcpy_s(&m_pCapitalFlow[i], sizeof(CAPITALFLOWSTRUCK),
+				ptr, sizeof(CAPITALFLOWSTRUCK));
 		}
 
+		long lVol = ptr->GetTotalVol();
+		double dblAmt = ptr->GetTotalFlow(), dblBig = ptr->GetBigNavFlow(),dblSmall=ptr->GetSmallNavFlow();
 		LeaveCriticalSection(&csMainFlowLock);
 
 		return true;

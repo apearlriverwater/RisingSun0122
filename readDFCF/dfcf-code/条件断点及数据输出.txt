@@ -1,0 +1,6 @@
+printstockcode:
+Message("code=%c%c%c%c%c%c\n",Byte(eax),Byte(eax+1),Byte(eax+2),Byte(eax+3),Byte(eax+4),Byte(eax+5)),0
+
+printfloat:
+
+

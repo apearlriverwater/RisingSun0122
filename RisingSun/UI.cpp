@@ -16,7 +16,7 @@ Notices: Copyright (c) 2008 Jeffrey Richter & Christophe Nasarre
 #include "..\RisingSun\constant.h"
 #include "Data.h"
 #include "UI.h"
-#include "..\RisingSun\gmTrade.h"
+
 #include "..\RisingSun\TechAnalyse.h"
 
 extern CDISPLAY  g_usrDisplay;

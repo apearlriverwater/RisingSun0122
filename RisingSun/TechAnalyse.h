@@ -294,7 +294,7 @@ public:
 
 		try
 		{
-			CAPITALFLOWMINISTRUCK *pCapFlow = (CAPITALFLOWMINISTRUCK *)pParam->pData;
+			CAPITALFLOWSTRUCK *pCapFlow = (CAPITALFLOWSTRUCK *)pParam->pData;
 
 			//计算累计资金流信息
 			int nStartIndex = max(0, pParam->nDataCount - MAX_CACL_COUNT);
@@ -303,12 +303,12 @@ public:
 			{
 			case CACL_FLOW_MAIN_DELTA:
 			case CACL_FLOW_MAIN_TOTAL:
-				dblMainFlow[0] = pCapFlow[nStartIndex].GetBigFlow();
+				dblMainFlow[0] = pCapFlow[nStartIndex].GetBigNavFlow();
 				break;
 			
 			case CACL_FLOW_SMALL_DELTA:
 			case CACL_FLOW_SMALL_TOTAL:
-				dblMainFlow[0] = pCapFlow[nStartIndex].GetSmallFlow();
+				dblMainFlow[0] = pCapFlow[nStartIndex].GetSmallNavFlow();
 				break;
 			}
 			
@@ -323,18 +323,18 @@ public:
 				switch (pParam->nOption)
 				{
 					case CACL_FLOW_MAIN_DELTA:
-						dblMainFlow[i - nStartIndex] = pCapFlow[i].GetBigFlow();
+						dblMainFlow[i - nStartIndex] = pCapFlow[i].GetBigNavFlow();
 						break;
 					case CACL_FLOW_MAIN_TOTAL:
 						dblMainFlow[i - nStartIndex] = dblMainFlow[i - nStartIndex - 1]
-							+ pCapFlow[i].GetBigFlow();
+							+ pCapFlow[i].GetBigNavFlow();
 						break;
 					case CACL_FLOW_SMALL_DELTA:
-						dblMainFlow[i - nStartIndex] = pCapFlow[i].GetSmallFlow();
+						dblMainFlow[i - nStartIndex] = pCapFlow[i].GetSmallNavFlow();
 						break;
 					case CACL_FLOW_SMALL_TOTAL:
 						dblMainFlow[i - nStartIndex] = dblMainFlow[i - nStartIndex - 1]
-							+ pCapFlow[i].GetSmallFlow();
+							+ pCapFlow[i].GetSmallNavFlow();
 						break;
 				}
 			}

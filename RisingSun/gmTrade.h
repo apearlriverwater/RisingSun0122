@@ -377,7 +377,7 @@ public:
 		//逆序分析最近四次资金流变化情况
 		do
 		{
-			CAPITALFLOWMINISTRUCK *pStart = pStockData->m_pCapitalFlow + nStart;
+			CAPITALFLOWSTRUCK *pStart = pStockData->m_pCapitalFlow + nStart;
 			
 			m_usrParam.pData = pStart;
 

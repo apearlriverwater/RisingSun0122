@@ -29,7 +29,7 @@ typedef struct tagHOOKSTRUCT {
 
 	char	*szModuleName, *szFuncName;//被截取的模块和函数名
 	int		nOffset;		//被拦截函数的实际入口相对指定函数地址的偏移量
-	PVOID	*pfOrigFun = NULL, *pfNewFun = NULL;//原函数指针和新函数指针
+	PVOID	*pfOrigFun = NULL, *pfOrigFunCaller = NULL, *pfNewFun = NULL;//原函数指针和新函数指针
 	BYTE    bytOrigEntryCode[FLATJMPCODE_LENGTH+1] = {0};//原函数入口处的指令码
 	//nOffset  被拦截函数的实际入口相对指定函数地址的偏移量
 
@@ -41,11 +41,11 @@ typedef struct tagHOOKSTRUCT {
 		MEMORY_BASIC_INFORMATION MemInfo = { 0 };    //内存分页属性信息
 		int nRetry = 0, nRetryCount = 5;
 
-		if (!pfOrigFun)
+		if (!pfOrigFunCaller)
 			return IsSuccess;
 
 		while (nRetry<nRetryCount
-			&& VirtualQuery(pfOrigFun, &MemInfo, sizeof(MEMORY_BASIC_INFORMATION)) != sizeof(MEMORY_BASIC_INFORMATION))
+			&& VirtualQuery(pfOrigFunCaller, &MemInfo, sizeof(MEMORY_BASIC_INFORMATION)) != sizeof(MEMORY_BASIC_INFORMATION))
 		{
 			Sleep(20);
 			nRetry++;
@@ -66,18 +66,18 @@ typedef struct tagHOOKSTRUCT {
 				if (nRetry<nRetryCount)                            //修改页面为可写
 				{
 					for (int i = 0; i<FLATJMPCODE_LENGTH+1; i++)
-						bytOrigEntryCode[i] =*((BYTE*)pfOrigFun + i);
+						bytOrigEntryCode[i] =*((BYTE*)pfOrigFunCaller + i);
 
-					*(BYTE*)pfOrigFun = FLATJMPCMD;  
+					*(BYTE*)pfOrigFunCaller = FLATJMPCMD;  
 
 					if(bLocal ) //模块内调用
-						*(DWORD*)((BYTE*)pfOrigFun + FLATJMPCMD_LENGTH)
-							= (DWORD)pfNewFun - (DWORD)pfOrigFun - FLATJMPCODE_LENGTH ;
+						*(DWORD*)((BYTE*)pfOrigFunCaller + FLATJMPCMD_LENGTH)
+							= (DWORD)pfNewFun - (DWORD)pfOrigFunCaller - FLATJMPCODE_LENGTH ;
 					else //跨模块调用
 					{
-						*(DWORD*)((BYTE*)pfOrigFun + FLATJMPCMD_LENGTH)
-							= (DWORD)pfNewFun - (DWORD)pfOrigFun - FLATJMPCODE_LENGTH;
-						*((BYTE*)pfOrigFun + FLATJMPCMD_LENGTH+4)= FLATNOPCMD;//空指令
+						*(DWORD*)((BYTE*)pfOrigFunCaller + FLATJMPCMD_LENGTH)
+							= (DWORD)pfNewFun - (DWORD)pfOrigFunCaller - FLATJMPCODE_LENGTH;
+						*((BYTE*)pfOrigFunCaller + FLATJMPCMD_LENGTH+4)= FLATNOPCMD;//空指令
 					}
 
 						
@@ -111,12 +111,12 @@ typedef struct tagHOOKSTRUCT {
 		MEMORY_BASIC_INFORMATION MemInfo = { 0 };    //内存分页属性信息
 		int nRetry = 0, nRetryCount = 5;
 
-		if (!pfOrigFun)
+		if (!pfOrigFunCaller)
 			return IsSuccess;
 
 		//防止内存不能访问导致失败
 		while (nRetry<nRetryCount
-			&& VirtualQuery(pfOrigFun, &MemInfo, sizeof(MEMORY_BASIC_INFORMATION)) != sizeof(MEMORY_BASIC_INFORMATION))
+			&& VirtualQuery(pfOrigFunCaller, &MemInfo, sizeof(MEMORY_BASIC_INFORMATION)) != sizeof(MEMORY_BASIC_INFORMATION))
 		{
 			Sleep(20);
 			nRetry++;
@@ -138,7 +138,7 @@ typedef struct tagHOOKSTRUCT {
 				if (nRetry<nRetryCount)                            //修改页面为可写
 				{
 					for (int i = 0; i<FLATJMPCODE_LENGTH; i++)
-						*((BYTE*)pfOrigFun + i) = bytOrigEntryCode[i];
+						*((BYTE*)pfOrigFunCaller + i) = bytOrigEntryCode[i];
 
 					IsSuccess = TRUE;
 				}
@@ -163,15 +163,16 @@ typedef struct tagHOOKSTRUCT {
 
 	BOOL InitHook(char *szMod, char *szFunc, PVOID *pfNew, int nOffsetIn = 0)
 	{
-		pfOrigFun = NULL;
+		pfOrigFunCaller = NULL;
 		pfNewFun = pfNew;
 		szModuleName = szMod, szFuncName = szFunc;
 		nOffset = nOffsetIn;
 
 		HMODULE  hModule = GetModuleHandleA(szModuleName);
-		pfOrigFun = (PVOID*)((BYTE*)GetProcAddress(hModule, szFunc) + nOffset);
+		pfOrigFun = (PVOID*)GetProcAddress(hModule, szFunc);
+		pfOrigFunCaller = (PVOID*)((BYTE*)pfOrigFun + nOffset);
 
-		return (!pfOrigFun);
+		return (!pfOrigFunCaller);
 	}
 	
 }HOOKSTRUCT;
@@ -200,21 +201,46 @@ public:
 
 	static void Init()
 	{
+		/*
+		102C7390 AddData  v591 = QDataEngine::WriteCapitalFlowKLineData
+		      102D0107   call    ?WriteCapitalFlowKLineData@QDataEngine@@SAJEW4DCYCLE@@ABV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@PAUCAPITALFLOW_DAY_ITEM_DATA@@HAAH@Z ; QDataEngine::WriteCapitalFlowKLineData(uchar,DCYCLE,std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> const &,CAPITALFLOW_DAY_ITEM_DATA *,int,int &)
+		int __thiscall sub_102F9AD0(WPARAM *this, int a2)(有效调用,实时性的K线资金流数据，用途不大)
+		     102F9FD2   call    ?WriteCapitalFlowKLineData@QDataEngine@@SAJEW4DCYCLE@@ABV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@PAUCAPITALFLOW_DAY_ITEM_DATA@@HAAH@Z ; QDataEngine::WriteCapitalFlowKLineData(uchar,DCYCLE,std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> const &,CAPITALFLOW_DAY_ITEM_DATA *,int,int &)
+		
+
+		*/
 		g_nCurStockCode = 0;
+		int Add_L2DetailData_entrence = 0x7566ef0;
+		int call_address_of_Add_L2DetailData = 0x0749A018;
 		usrHookDFCF[0].InitHook("datacenter.dll",
 			"?Add_L2DetailData@QDataEngine@@SAJPADEKKPAUL2_TRANSACTION_PKG@@H@Z", //被截取的模块名字和函数名字
 			(PVOID*)HookAddL2Detail, //函数指针 
-			0x0503A018 - 0X5106860 //相对被拦截函数的偏移量（通过IDA可获得有关参数），缺省值为
+			call_address_of_Add_L2DetailData - Add_L2DetailData_entrence  //相对被拦截函数的偏移量（通过IDA可获得有关参数），缺省值为
 			);
 		usrHookDFCF[0].HookApi();
 
+		int WriteCapitalFlowKLineData_entrence = 0x10364CB0;
+		int call_address_of_WriteCapitalFlowKLineData = 0x102F9FD2;
+		int AddDataAddress = 0x102C7390;
+		/*
 		usrHookDFCF[1].InitHook("datacenter.dll",
-			"?Add_L2DetailData@QDataEngine@@SAJPADEKKPAUL2_TRANSACTION_PKG@@H@Z", //被截取的模块名字和函数名字
-			(PVOID*)Hook4DCA010memcpy_s, //函数指针 
-			0x4DCA0F1-0X50F6860 //相对被拦截函数的偏移量（通过IDA可获得有关参数），缺省值为0
+			"?AddData@CDataMgr@@QAEXPAPAD@Z", //被截取的模块名字和函数名字
+			(PVOID*)HookWriteCapitalFlowKLineData, //函数指针  WriteCapitalFlowKLineData(char, int, int, void *, int, int)
+			call_address_of_WriteCapitalFlowKLineData- AddDataAddress //相对被拦截函数的偏移量（通过IDA可获得有关参数），缺省值为0
 			);
-		usrHookDFCF[1].HookApi(false);
-		
+		usrHookDFCF[1].HookApi();
+		*/
+
+		// call link  QDataEngine::WriteCapitalFlowKLineData--->sub_100352F0-->sub_100395C0-->sub_100399B0  0x10039A91--->memcpy_s
+		int call_address_of_memcpy_s = 0x10039A91;
+		usrHookDFCF[2].InitHook("datacenter.dll",
+			"?WriteCapitalFlowKLineData@QDataEngine@@SAJEW4DCYCLE@@ABV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@PAUCAPITALFLOW_DAY_ITEM_DATA@@HAAH@Z", //被截取的模块名字和函数名字
+			(PVOID*)Hookmemcpy_s, //函数指针  WriteCapitalFlowKLineData(char, int, int, void *, int, int)
+			call_address_of_memcpy_s - WriteCapitalFlowKLineData_entrence //相对被拦截函数的偏移量（通过IDA可获得有关参数），缺省值为0
+		);
+		usrHookDFCF[2].HookApi(false);
+		// */
+
 		//CDataMgr::GetOneStkInfo(CDataMgr *this, char a2, char a3)
 		//usrHookDFCF[2].InitHook("datacenter.dll",
 		//		"?GetOneStkInfo@CDataMgr@@QAEPAUSTK_PER@@V?$CStringT@_WV?$StrTraitMFC_DLL@_WV?$ChTraitsCRT@_W@ATL@@@@@ATL@@D@Z", //被截取的模块名字和函数名字
@@ -227,18 +253,25 @@ public:
 		
 	}
 	//利用__thiscall解决this指针的有效传递问题
-	static char __thiscall  Hook4DCA010(DWORD *pObj,int a2, int a3, int a4, int a5)
+	//int __cdecl QDataEngine::WriteCapitalFlowKLineData (char, int, int, void *, int, int)
+	static int __cdecl  HookWriteCapitalFlowKLineData(char a0, int a1, int a2, void *pCap , int nCount, int a4)
 	{
-		__asm {
-						
-			mov al,1
+		typedef int(__cdecl *fp)(char, int, int, void *, int, int);
 
-			
-		}
+		PCWSTR  pszCaption = L"RingSun Aplication";
+
+		// Send the string to the main dialog box
+		COPYDATASTRUCT cdsCaptical = { 0x101, (nCount + 1) , pCap };
+
+		FORWARD_WM_COPYDATA(FindWindow(NULL, pszCaption),
+			NULL, &cdsCaptical, SendMessage);
+
+		return 1;
 	}
+	
 
 	//拦截对memcpy_s调用，数据送出
-	static int __cdecl Hook4DCA010memcpy_s(void *Dst, rsize_t DstSize, const void *Src, rsize_t MaxCount)
+	static int __cdecl Hookmemcpy_s(void *Dst, rsize_t DstSize, const void *Src, rsize_t MaxCount)
 	{
 		PCWSTR  pszCaption = L"RingSun Aplication";
 
