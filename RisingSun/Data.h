@@ -158,6 +158,7 @@ typedef struct tagKLINEDATA
 
 }KLINEDATA;
 
+/*
 class CINTEGER_QUEUE
 {
 private:
@@ -231,7 +232,7 @@ public:
 		LeaveCriticalSection(&cs);
 	}
 };
-
+*/
 class CSTOCKDATAS
 {
 private:
@@ -243,7 +244,7 @@ public:
 	int m_nStockCode, m_nTradeDate;//股票代码、最新交易日
 	
 	//技术分析结果队列 nIndex:Data index, nResult:TA result
-	CINTEGER_QUEUE    m_nTaResult;  
+	//CINTEGER_QUEUE    m_nTaResult;  
 	int m_nTickCount;   //当日当前总成交笔数
 	L2TICKS *m_pL2Ticks;		//动态分配的笔成交数据  起步6000，以3000为基础递增记录数
 
@@ -542,6 +543,7 @@ public:
 			if (stat(szFilePath, &my_stat) == 0)//==-1
 			{
 				//文件存在  仅保存新加的部分，从文件最后的记录开始添加数据
+				//处理有问题，有时出现不断往后加数据情况  todo20180427
 				fopen_s(&fp, szFilePath, "rb+");
 				nCopySize = sizeof(CAPITALFLOWSTRUCK);
 				fseek(fp, -nCopySize, SEEK_END);
@@ -968,8 +970,8 @@ public:
 				ptr, sizeof(CAPITALFLOWSTRUCK));
 		}
 
-		long lVol = ptr->GetTotalVol();
-		double dblAmt = ptr->GetTotalFlow(), dblBig = ptr->GetBigNavFlow(),dblSmall=ptr->GetSmallNavFlow();
+		//long lVol = ptr->GetTotalVol();
+		//double dblAmt = ptr->GetTotalFlow(), dblBig = ptr->GetBigNavFlow(),dblSmall=ptr->GetSmallNavFlow();
 		LeaveCriticalSection(&csMainFlowLock);
 
 		return true;

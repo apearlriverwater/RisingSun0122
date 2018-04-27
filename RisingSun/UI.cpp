@@ -17,10 +17,10 @@ Notices: Copyright (c) 2008 Jeffrey Richter & Christophe Nasarre
 #include "Data.h"
 #include "UI.h"
 
-#include "..\RisingSun\TechAnalyse.h"
+//#include "..\RisingSun\TechAnalyse.h"
 
 extern CDISPLAY  g_usrDisplay;
-CINTEGER_QUEUE	  g_usrReadDFCFQueue;  //读取东方财富信息队列，由ReadDFCFThread线程使用
+//CINTEGER_QUEUE	  g_usrReadDFCFQueue;  //读取东方财富信息队列，由ReadDFCFThread线程使用
 int		g_nAutoClickMode = 0;
 POINT	m_ptCorPos;//自动重复click的位置
 HWND	m_hWnd = 0;
@@ -28,68 +28,9 @@ int     g_nAllStocksCount = 0;
 
 void   AddData2ReadDFCFThreadQueue(int i1=0, int i2 = 0, int i3 = 0 )
 {
-	g_usrReadDFCFQueue.PushData(i1, i2, i3);
+	//g_usrReadDFCFQueue.PushData(i1, i2, i3);
 }
 
-//读取DFCF信息线程,查询方式控制查询行为，提高数据读取效率
-DWORD WINAPI ReadDFCFThread(LPVOID lpParam)
-{
-	THREADPARAMETERS	*pThreadParam = (THREADPARAMETERS  *)lpParam;
-	CINTEGER_QUEUE		*pTAMsgQ = (CINTEGER_QUEUE *)pThreadParam->pTAMsgQ;
-
-	char	szBuf[260] = { 0 };
-	int     nCount = 0;
-	while (true)
-	{
-		Sleep(500);
-		if (pTAMsgQ->HasData())  //查看队列是否有信息发生变化
-		{
-			int	nStockIndex, nChangedType, nOperation;
-			pTAMsgQ->PopData(&nStockIndex, &nChangedType, &nOperation);
-
-			if (g_nAutoClickMode>0)
-			{
-				SetCursorPos(m_ptCorPos.x, m_ptCorPos.y);
-				mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-				mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
-				nCount = 0;
-			}
-			
-
-			//xxx
-			/*switch (g_nAutoClickMode)
-			{
-			case ID_HOT_GET_CAPITAL:
-
-				break;
-			case ID_HOT_GET_L2TICKS:
-
-				break;
-			default:
-				break;
-			}*/
-
-		}
-		else
-		{
-			
-
-			if (g_nAutoClickMode > 0)
-			{
-				nCount++;
-				if (nCount >12)  //防止长时间不读取数据
-				{
-					SetCursorPos(m_ptCorPos.x, m_ptCorPos.y);
-					mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-					mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
-					nCount = 0;
-				}
-			}
-		}
-
-	}
-	return 0;
-}
 
 void OnSize(HWND hWnd, UINT state, int cx, int cy) {
 
@@ -180,7 +121,7 @@ BOOL OnCopyData(HWND hWnd, HWND hWndFrom, PCOPYDATASTRUCT pcds) {
 					g_usrDisplay.AddMsg(hWnd, szTmp);
 				}
 				
-				g_usrTAQueue.PushData(nStockIndex, STOCKDATACHANGE_CAPITALFLOW);
+				//g_usrTAQueue.PushData(nStockIndex, STOCKDATACHANGE_CAPITALFLOW);
 			}
 				
 
@@ -192,7 +133,7 @@ BOOL OnCopyData(HWND hWnd, HWND hWndFrom, PCOPYDATASTRUCT pcds) {
 	case 0x201:
 		//从TradeThread来的信息量达到一定程度会丢数据，待查  todo  可能是多线程条件下调度显示信息冲突
 		
-		g_usrDisplay.AddMsg(hWnd, (char*)pcds->lpData);
+		//g_usrDisplay.AddMsg(hWnd, (char*)pcds->lpData);
 		break;
 	}
 
@@ -306,6 +247,7 @@ void dealWithHotKey(HWND hwnd, WPARAM wParam)
 
 	switch (wParam)
 	{
+		/*
 		case ID_HOT_GET_CAPITAL_AND_KLINE:		//暂停\继续读取资金流+k LINE信息  f12
 			if (!g_nAutoClickMode)
 			{
@@ -322,7 +264,7 @@ void dealWithHotKey(HWND hwnd, WPARAM wParam)
 				g_nAutoClickMode = 0;
 			}
 			break;
-
+		*/
 		case ID_HOT_GET_CAPITAL:			//暂停\继续读取资金流信息  f10
 			if (!g_nAutoClickMode)
 			{
@@ -349,7 +291,7 @@ void dealWithHotKey(HWND hwnd, WPARAM wParam)
 				SetWindowPos(m_hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 				GetCursorPos(&m_ptCorPos);
 				KillTimer(NULL, ID_HOT_GET_L2TICKS);
-				SetTimer(NULL, ID_HOT_GET_L2TICKS, 1000, OnTimer);
+				SetTimer(NULL, ID_HOT_GET_L2TICKS, 1500, OnTimer);
 			}
 			else if(g_nAutoClickMode== ID_HOT_GET_L2TICKS)
 			{

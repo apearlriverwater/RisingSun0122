@@ -1,8 +1,8 @@
 #pragma once
 #include <time.h>
-#include "gmTrade.h"
-extern CRISINGSUNTRADER  g_usrTrader;
-extern CINTEGER_QUEUE g_usrTAQueue;
+//#include "gmTrade.h"
+//extern CRISINGSUNTRADER  g_usrTrader;
+//extern CINTEGER_QUEUE g_usrTAQueue;
 extern CSTOCKDATAS g_usrStockData[MAXSTOCKS];
 
 int FindStockInL2Ticks(CSTOCKDATAS *pStockData, int nStockCode);

@@ -11,6 +11,7 @@
 
 #include "TechAnalyse.h"
 
+
 class CRISINGSUNTRADER;
 extern CINTEGER_QUEUE g_usrTradeQueue;  //目前只能采用全局变量方式进行访问，通过指针传递的信息错误
 

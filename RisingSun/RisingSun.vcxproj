@@ -103,7 +103,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>..\ta-lib-msvc\c\lib\ta_libc_cdr.lib;..\gmsdk_c_2.9.9_windows\lib\win32\libgm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -121,7 +121,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>..\ta-lib-msvc\c\lib\ta_libc_cdr.lib;..\gmsdk_c_2.9.9_windows\lib\win32\libgm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -175,12 +175,9 @@
     <Image Include="LastMsgBoxInfo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="gmTrade.cpp" />
-    <ClCompile Include="gmTrade.h" />
     <ClCompile Include="mainFrame.cpp" />
     <ClCompile Include="InjDFCF.h" />
     <ClCompile Include="UI.cpp" />
-    <ClCompile Include="TechAnalyse.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RisingSun.ini" />

@@ -17,8 +17,8 @@ Notices: Copyright (c) 2008 Jeffrey Richter & Christophe Nasarre
 #include "Data.h"
 #include "UI.h"
 #include "InjDFCF.h"
-#include "gmTrade.h"
-#include "TechAnalyse.h"
+//#include "gmTrade.h"
+//#include "TechAnalyse.h"
 
 // The head of the linked-list of CAPIHook objects
 CAPIHook* CAPIHook::sm_pHead = NULL;
@@ -26,21 +26,22 @@ CAPIHook* CAPIHook::sm_pHead = NULL;
 // By default, the module containing the CAPIHook() is not hooked
 BOOL CAPIHook::ExcludeAPIHookMod = TRUE;
 
-CRISINGSUNTRADER	g_usrTrader;
-CINTEGER_QUEUE		g_usrTradeQueue;  //技术分析结果队列,记录技术分析结果队列，由TradeThread线程使用
-CINTEGER_QUEUE		g_usrTAQueue;  //技术分析队列,记录拟分析的标的代码队列，由TAThread线程使用
+//CRISINGSUNTRADER	g_usrTrader;
+//CINTEGER_QUEUE		g_usrTradeQueue;  //技术分析结果队列,记录技术分析结果队列，由TradeThread线程使用
+//CINTEGER_QUEUE		g_usrTAQueue;  //技术分析队列,记录拟分析的标的代码队列，由TAThread线程使用
 
 CSTOCKDATAS			g_usrStockData[MAXSTOCKS];
 CDISPLAY			g_usrDisplay;
 
-THREADPARAMETERS  g_usrTradeThreadParam =
-{ &g_usrTAQueue,&g_usrTradeQueue,
-g_usrStockData,&g_usrTrader };
+//THREADPARAMETERS  g_usrTradeThreadParam =
+//{ &g_usrTAQueue,&g_usrTradeQueue,
+//g_usrStockData,&g_usrTrader };
 extern int  g_nAutoClickMode, g_nAllStocksCount;;
 
 //int  InitUI(HINSTANCE hInstExe);
 
 //技术分析线程
+/*
 DWORD WINAPI TAThread(LPVOID lpParam)
 {
 	THREADPARAMETERS	*pThreadParam = (THREADPARAMETERS  *)lpParam;
@@ -166,6 +167,7 @@ DWORD WINAPI TAThread(LPVOID lpParam)
 	}
 	return 0;
 }
+*/
 
 
 //交易线程
@@ -173,6 +175,7 @@ DWORD WINAPI TAThread(LPVOID lpParam)
 根据TAThread线程对资金流的分析，把关注的股票代码放入本线程的消息队列。根据
 消息队列的股票代码针对K线的有关数据进行买卖点分析。
 */
+/*
 DWORD WINAPI TradeThread(LPVOID lpParam)
 {
 	THREADPARAMETERS    *pThreadParam = (THREADPARAMETERS  *)lpParam;
@@ -237,26 +240,16 @@ DWORD WINAPI TradeThread(LPVOID lpParam)
 	}
 	return 0;
 }
+*/
 
-// Handle unexpected exceptions if the module is unloaded  todo 用途？？？
-LONG WINAPI InvalidReadExceptionFilter(PEXCEPTION_POINTERS pep) {
-
-	// handle all unexpected exceptions because we simply don't patch
-	// any module in that case
-	LONG lDisposition = EXCEPTION_EXECUTE_HANDLER;
-
-	// Note: pep->ExceptionRecord->ExceptionCode has 0xc0000005 as a value
-
-	return(lDisposition);
-}
 
 int WINAPI _tWinMain(HINSTANCE hInstExe, HINSTANCE, PTSTR pszCmdLine, int) {
 	
 
 	CAPIHook usrWorkIndDLL(TEXT("mainfree.exe"), TEXT("READDFCF.dll"));  //实现自定义动态库的远程注入
 
-	g_usrTrader.m_hTAThread = CreateThread(NULL, 0, TAThread, &g_usrTradeThreadParam, 0, 0);
-	g_usrTrader.m_hTradeThread = CreateThread(NULL, 0, TradeThread, &g_usrTradeThreadParam, 0, 0);
+	//g_usrTrader.m_hTAThread = CreateThread(NULL, 0, TAThread, &g_usrTradeThreadParam, 0, 0);
+	//g_usrTrader.m_hTradeThread = CreateThread(NULL, 0, TradeThread, &g_usrTradeThreadParam, 0, 0);
 
 	//生成一个模态窗体，与dfcf的全部交互信息由注入到DFCF地址控件的DLL实现。
 	InitUI(hInstExe);
